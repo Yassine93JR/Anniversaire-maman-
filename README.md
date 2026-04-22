@@ -1,70 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="fr">
 <head>
-<title>Page Title</title>
-<meta charset="UTF-8">
-
-<style>
-@font-face { 
-  font-family: "Merriweather Sans";
-  src: url('MerriweatherSans-Medium.ttf') format('truetype');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joyeux Anniversaire Maman 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(-45deg, #ff9a9e, #fbc2eb, #a1c4fd, #fddb92);
+      background-size: 400% 400%;
+      animation: gradientBG 8s ease infinite;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      padding: 20px;
+    }@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-body {
-  background: #FFFFFF;
-  margin-bottom: 200px;
+.container {
+  text-align: center;
+  color: white;
+  max-width: 500px;
+  width: 100%;
 }
 
-@keyframes BackgroundGradient {
-  0%{background-position:0% 50%;}
-  50%{background-position: 100% 50% }
-  100%{background-position: 0% 50%}
-
+h1 {
+  font-size: clamp(1.8em, 6vw, 3.5em);
+  animation: float 3s ease-in-out infinite;
+  text-shadow: 0 0 20px rgba(0,0,0,0.3);
+  margin: 0;
 }
 
-.VCE{
-  color: #f2f2f2;
-  background: linear-gradient(45deg, #FCE38A, #f5ad4d, #fd81b5, #f74689, #ad5af3, #8a13ef );
-  background-size: 450% 100%;
-  animation: BackgroundGradient 30s ease infinite;  
-  padding: 20px;
-  margin: 30px;
-  border-radius: 0.5rem;
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-.VCE_Title{
-  font-family: "Merriweather Sans", sans-serif;
-  font-weight: 400;
-  font-size: 30px;
-  margin-bottom: 0;
+.date {
+  font-size: clamp(1em, 4vw, 1.5em);
+  margin-top: 10px;
 }
 
-.JTime{
-  font-family: "Merriweather Sans", sans-serif;
-  font-size: 20px;
+.from {
+  margin-top: 20px;
+  font-size: clamp(1em, 4vw, 1.3em);
+  font-weight: bold;
 }
 
-button {
-  font-family: "Merriweather Sans", sans-serif;
-  font-size: 16px;
-  padding: 15px 22px;
-  border:3px #f2f2f2 solid;
-  border-radius:20px;
-  word-break: break-word;
-  white-space: normal;  
+.cake {
+  margin-top: 25px;
+  position: relative;
 }
 
-</style>
+.candle {
+  width: 10px;
+  height: 40px;
+  background: repeating-linear-gradient(45deg, yellow, orange 5px);
+  margin: auto;
+  border-radius: 3px;
+  position: relative;
+}
+
+.flame {
+  width: 12px;
+  height: 18px;
+  background: radial-gradient(circle, #ff0, orange, red);
+  border-radius: 50%;
+  position: absolute;
+  top: -18px;
+  left: -1px;
+  animation: flicker 0.2s infinite alternate;
+}
+
+@keyframes flicker {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(1.2); opacity: 0.7; }
+}
+
+.balloon {
+  position: absolute;
+  bottom: -100px;
+  width: 30px;
+  height: 40px;
+  border-radius: 50%;
+  animation: rise 6s linear infinite;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-120vh);
+  }
+}
+
+.confetti {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  top: -10px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(720deg);
+  }
+}
+
+  </style>
 </head>
-<body>
-<div class="VCE">
-<h2 class="VCE_Title">Visual Code Editor for HTML, CSS and JavaScript</h2>
-<hr style="border: 3px solid #f2f2f2;">
-<p class="JTime">Whatever code you write above, Live Preview will be visible here</p>
-<br>
-<button type="button" onclick="document.getElementById('Example').innerHTML = Date()">a Javascript Date and Time</button>
-<p class="JTime" id="Example"></p>
-<p class="JTime">Hit the "Clear" button and start typing Code.</p>
+<body>  <div class="container">
+    <h1>🎂 Joyeux Anniversaire Maman 🎉</h1>
+    <div class="date">Jeudi 23 Avril 2026</div><div class="cake">
+  <div class="candle">
+    <div class="flame"></div>
+  </div>
 </div>
-</body>
+
+<div class="from">❤️ De la part de Marwane, Manel et Yassine ❤️</div>
+
+  </div>  <script>
+    function createConfetti() {
+      const el = document.createElement('div');
+      el.className = 'confetti';
+      document.body.appendChild(el);
+
+      el.style.left = Math.random() * window.innerWidth + 'px';
+      el.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
+      el.style.animationDuration = (Math.random()*3+2)+'s';
+
+      setTimeout(() => el.remove(), 5000);
+    }
+
+    setInterval(createConfetti, 80);
+
+    function createBalloon() {
+      const b = document.createElement('div');
+      b.className = 'balloon';
+      document.body.appendChild(b);
+
+      b.style.left = Math.random() * window.innerWidth + 'px';
+      b.style.backgroundColor = `hsl(${Math.random()*360},100%,60%)`;
+      b.style.animationDuration = (Math.random()*3+4)+'s';
+
+      setTimeout(() => b.remove(), 7000);
+    }
+
+    setInterval(createBalloon, 800);
+  </script></body>
 </html>
