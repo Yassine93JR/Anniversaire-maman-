@@ -1,200 +1,108 @@
 <!DOCTYPE html><html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎁 Surprise Maman</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #0f0f0f;
-      font-family: 'Segoe UI', sans-serif;
-      overflow: hidden;
-    }/* 🎁 Cadeau premium */
-.gift {
-  width: 140px;
-  height: 140px;
-  background: linear-gradient(135deg, #ff3c3c, #ff0000);
-  position: relative;
-  cursor: pointer;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: bounce 1s infinite;
-  box-shadow: 0 0 20px rgba(255,0,0,0.7);
-}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎁 Surprise Maman</title>
+<style>
+body {
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#000;
+  overflow:hidden;
+  font-family:sans-serif;
+}/* 🎁 cadeau 3D */ .gift { width:140px; height:140px; background:red; position:relative; cursor:pointer; transform-style:preserve-3d; animation: bounce 1s infinite; }
 
-.gift::before {
-  content: '';
-  position: absolute;
-  width: 25px;
-  height: 140px;
-  background: gold;
-}
+.lid { position:absolute; width:140px; height:40px; background:darkred; top:-40px; left:0; transform-origin:bottom; }
 
-.gift::after {
-  content: '';
-  position: absolute;
-  width: 140px;
-  height: 25px;
-  background: gold;
-}
+@keyframes openLid { to { transform: rotateX(-120deg) translateY(-20px); } }
 
-@keyframes bounce {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-12px) scale(1.05); }
-}
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 
-/* 🎉 contenu */
-.content {
-  display: none;
-  text-align: center;
-  color: white;
-  position: absolute;
-  padding: 20px;
-}
+/* 🎉 contenu */ .content { display:none; position:absolute; text-align:center; color:white; }
 
-body.party {
-  background: linear-gradient(-45deg, #ff9a9e, #fbc2eb, #a1c4fd, #fddb92);
-  background-size: 400% 400%;
-  animation: gradientBG 8s ease infinite;
-}
+body.party { background: radial-gradient(circle at center, #222, #000); }
 
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+h1 { font-size:clamp(2em,7vw,3.5em); animation: fadeIn 2s forwards; opacity:0; }
 
-h1 {
-  font-size: clamp(2em, 7vw, 3.5em);
-  margin: 0;
-  opacity: 0;
-  animation: appear 2s forwards;
-}
+@keyframes fadeIn { to {opacity:1; transform:translateY(-10px)} }
 
-@keyframes appear {
-  to { opacity: 1; transform: translateY(-10px); }
-}
+/* 🎂 bougie */ .candle { width:12px; height:45px; background:yellow; margin:20px auto; position:relative; }
 
-.date, .from {
-  opacity: 0;
-  animation: appear 2s forwards;
-  animation-delay: 1s;
-}
+.flame { width:14px; height:20px; background:orange; border-radius:50%; position:absolute; top:-20px; animation:flicker .2s infinite alternate; }
 
-.from {
-  margin-top: 20px;
-  font-weight: bold;
-  animation-delay: 2s;
-}
+@keyframes flicker { from{transform:scale(1)} to{transform:scale(1.3)} }
 
-/* 🎂 bougie */
-.candle {
-  width: 12px;
-  height: 45px;
-  background: repeating-linear-gradient(45deg, yellow, orange 5px);
-  margin: 25px auto;
-  position: relative;
-  border-radius: 4px;
-}
+/* 🎊 confetti */ .confetti { position:absolute; width:6px; height:6px; top:-10px; animation:fall linear infinite; }
 
-.flame {
-  width: 14px;
-  height: 20px;
-  background: radial-gradient(circle, #ff0, orange, red);
-  border-radius: 50%;
-  position: absolute;
-  top: -20px;
-  left: -1px;
-  animation: flicker 0.2s infinite alternate;
-}
+@keyframes fall { to{transform:translateY(100vh) rotate(720deg)} }
 
-@keyframes flicker {
-  from { transform: scale(1); opacity: 1; }
-  to { transform: scale(1.3); opacity: 0.6; }
-}
+/* 🎈 ballons */ .balloon { position:absolute; bottom:-100px; width:30px; height:40px; border-radius:50%; animation: rise 6s linear infinite; }
 
-/* 🎊 confettis */
-.confetti {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  top: -10px;
-  animation: fall linear infinite;
-}
+@keyframes rise { to{transform:translateY(-120vh)} }
 
-@keyframes fall {
-  to { transform: translateY(100vh) rotate(720deg); }
-}
+/* 🎇 feu d'artifice */ .firework { position:absolute; width:5px; height:5px; border-radius:50%; animation: explode 1s forwards; }
 
-/* 💥 explosion */
-.burst {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: white;
-  border-radius: 50%;
-  animation: explode 0.8s forwards;
-}
+@keyframes explode { to { transform: scale(15); opacity:0; } }
 
-@keyframes explode {
-  to {
-    transform: scale(10);
-    opacity: 0;
-  }
-}
-
-  </style>
+</style>
 </head>
-<body>  <div class="gift" onclick="openGift(event)"></div>  <div class="content" id="content">
-    <h1 id="title">🎂 Joyeux Anniversaire Maman 🎉</h1>
-    <div class="date">Jeudi 23 Avril 2026</div>
-    <div class="candle"><div class="flame"></div></div>
-    <div class="from">❤️ De la part de Marwane, Manel et Yassine ❤️</div>
-  </div>  <audio id="music" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  </audio>  <script>
-    function openGift(e) {
-      createExplosion(e.clientX, e.clientY);
+<body><div class="gift" onclick="openGift(event)">
+  <div class="lid" id="lid"></div>
+</div><div class="content" id="content">
+  <h1>🎂 Joyeux Anniversaire Maman 🎉</h1>
+  <div>Jeudi 23 Avril 2026</div>
+  <div class="candle"><div class="flame"></div></div>
+  <div>❤️ De la part de Marwane, Manel et Yassine ❤️</div>
+</div><!-- vraie musique anniversaire --><audio id="music" loop>
+  <source src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mid" type="audio/midi">
+</audio><script>
+function openGift(e){
+  document.getElementById('lid').style.animation='openLid 1s forwards';
 
-      document.querySelector('.gift').style.display = 'none';
-      document.getElementById('content').style.display = 'block';
-      document.body.classList.add('party');
+  setTimeout(()=>{
+    document.querySelector('.gift').style.display='none';
+    document.getElementById('content').style.display='block';
+    document.body.classList.add('party');
 
-      document.getElementById('music').play();
+    document.getElementById('music').play();
 
-      setInterval(createConfetti, 70);
-    }
+    setInterval(confetti,80);
+    setInterval(balloon,700);
+    setInterval(firework,1200);
+  },800);
+}
 
-    function createConfetti() {
-      const el = document.createElement('div');
-      el.className = 'confetti';
-      document.body.appendChild(el);
+function confetti(){
+  const el=document.createElement('div');
+  el.className='confetti';
+  document.body.appendChild(el);
+  el.style.left=Math.random()*window.innerWidth+'px';
+  el.style.backgroundColor=`hsl(${Math.random()*360},100%,50%)`;
+  el.style.animationDuration=(Math.random()*3+2)+'s';
+  setTimeout(()=>el.remove(),5000);
+}
 
-      el.style.left = Math.random() * window.innerWidth + 'px';
-      el.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
-      el.style.animationDuration = (Math.random()*3+2)+'s';
+function balloon(){
+  const b=document.createElement('div');
+  b.className='balloon';
+  document.body.appendChild(b);
+  b.style.left=Math.random()*window.innerWidth+'px';
+  b.style.backgroundColor=`hsl(${Math.random()*360},100%,60%)`;
+  b.style.animationDuration=(Math.random()*3+4)+'s';
+  setTimeout(()=>b.remove(),7000);
+}
 
-      setTimeout(() => el.remove(), 5000);
-    }
-
-    function createExplosion(x, y) {
-      for (let i = 0; i < 20; i++) {
-        const b = document.createElement('div');
-        b.className = 'burst';
-        document.body.appendChild(b);
-
-        b.style.left = x + 'px';
-        b.style.top = y + 'px';
-        b.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
-
-        setTimeout(() => b.remove(), 800);
-      }
-    }
-  </script></body>
+function firework(){
+  const f=document.createElement('div');
+  f.className='firework';
+  document.body.appendChild(f);
+  f.style.left=Math.random()*window.innerWidth+'px';
+  f.style.top=Math.random()*window.innerHeight+'px';
+  f.style.backgroundColor=`hsl(${Math.random()*360},100%,50%)`;
+  setTimeout(()=>f.remove(),1000);
+}
+</script></body>
 </html>
