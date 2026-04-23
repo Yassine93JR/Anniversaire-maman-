@@ -62,7 +62,7 @@ h1 { font-size:clamp(2em,7vw,3.5em); opacity:0; animation: fadeIn 2s forwards; t
   <h1>🎂 Joyeux Anniversaire Maman 🎉</h1>
   <div>Jeudi 23 Avril 2026</div>
   <div class="candle"><div class="flame"></div></div>
-  <div>❤️ De la part de Marwane, Manel Yassine et papa ❤️</div>
+  <div>❤️ De la part de Marwane, Manel Yassine et Papa ❤️</div>
 </div><!-- 🎵 musique corrigée fiable --><audio id="music" preload="auto">
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8a1a2d2a6.mp3" type="audio/mpeg">
 </audio><script>
